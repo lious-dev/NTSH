@@ -8,6 +8,7 @@ questions_answers = [
     {"question": "李美芳老師喜歡教什麼科目？", "answer": "李老師喜歡教數學和科學。"}
 ]
 
+# 首頁 index.html
 @app.route('/')
 def index():
     return render_template('index.html', questions_answers=questions_answers)
@@ -26,5 +27,20 @@ def ask_question():
     # Render the ask.html template when the user visits the page
     return render_template('ask.html')
 
+@app.route('/quiz', methods=['GET', 'POST'])
+def ask_question():
+    if request.method == 'POST':
+        question = request.form['question']
+        
+        # Add a placeholder answer for simplicity; you can expand this later
+        answer = "回答將稍後提供。"
+        questions_answers.append({"question": question, "answer": answer})
+        
+        return redirect('/')
+    
+    # Render the ask.html template when the user visits the page
+    return render_template('quiz.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
+

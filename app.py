@@ -28,7 +28,7 @@ def ask_question():
     return render_template('ask.html')
 
 @app.route('/quiz', methods=['GET', 'POST'])
-def ask_question():
+def quiz_question():
     if request.method == 'POST':
         question = request.form['question']
         
@@ -43,4 +43,5 @@ def ask_question():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
+
 
